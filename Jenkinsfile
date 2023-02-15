@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                git 'https://github.com/tirush1245/Lara-V8.git'
+                git 'https://github.com/tirush1245/lara8.git'
                 sh 'composer install'
                 sh 'cp .env.example .env'
                 sh 'php artisan key:generate'                                 
@@ -22,5 +22,6 @@ pipeline {
                 sh 'rsync -avz . root@ec2-13-234-78-137.ap-south-1.compute.amazonaws.com:/var/www/websites/Lara-V8'
 			}
 		 }
-    }        
+    }
+        
 }
