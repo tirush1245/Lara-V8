@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
 			    sh 'chmod -R 777 /var/lib/jenkins/workspace'							
-                sh 'rsync -avz . ssh root@ec2-3-111-168-44.ap-south-1.compute.amazonaws.com:/var/www/websites/Lara-V8'
+                sh 'rsync -avz . root@ec2-3-111-168-44.ap-south-1.compute.amazonaws.com:/var/www/websites/Lara-V8'
 			}
 		 }
     }
