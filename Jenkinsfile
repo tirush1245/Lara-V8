@@ -22,5 +22,6 @@ pipeline {
                 sh 'rsync -avz . root@ec2-3-111-168-44.ap-south-1.compute.amazonaws.com:/var/www/websites/Lara-V8'
 			}
 		 }
-    }     
+    } 
+    
 }
