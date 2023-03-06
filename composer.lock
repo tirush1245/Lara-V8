@@ -7708,3 +7708,4 @@
     "platform-dev": [],
     "plugin-api-version": "2.1.0"
 }
+  composer require nunomaduro/larastan --ignore-platform-reqs
