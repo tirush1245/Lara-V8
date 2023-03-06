@@ -1,12 +1,42 @@
-FROM jenkins/jenkins:centos7
+FROM php:8.1-fpm
 
-USER root
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    libonig-dev \
+    libpq-dev \
+    libicu-dev \
+    libxml2-dev \
+    unzip \
+    git \
+    curl \
+    && docker-php-ext-install pdo_mysql \
+    && docker-php-ext-install pdo_pgsql \
+    && docker-php-ext-install mbstring \
+    && docker-php-ext-install zip \
+    && docker-php-ext-install intl \
+    && docker-php-ext-install opcache \
+    && docker-php-ext-install exif \
+    && pecl install apcu \
+    && docker-php-ext-enable apcu
 
-RUN yum -y install epel-release
-RUN rpm -Uvh http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
-RUN yum-config-manager --enable remi-php74
-RUN yum install php php-mbstring php-xml php-pdo php-pdo_mysql php-xdebug -y
-RUN yum update -y
-RUN cd /tmp
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer
+# Copy application code
+COPY . /var/www/html
+
+# Set environment variables
+ENV APP_ENV=production
+ENV DB_HOST=localhost
+ENV DB_PORT=3306
+ENV DB_DATABASE=laravel
+ENV DB_USERNAME=laravel
+ENV DB_PASSWORD=tiru@123
+
+# Expose ports
+EXPOSE 80
+
+# Set work directory
+WORKDIR /var/www/html
+
+# Run commands
+RUN composer install --no-dev --no-interaction --optimize-autoloader
+CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=80"]
