@@ -36,8 +36,7 @@ pipeline {
                 sh "vendor/bin/phpunit --coverage-html 'reports/coverage'"
             }
         }
-        
-        
+                
 // 		stage('Deploy') {
 //             steps { 
                 
