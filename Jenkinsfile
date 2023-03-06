@@ -38,7 +38,8 @@ pipeline {
         }
         stage("Static code analysis larastan") {
             steps {
-                sh "vendor/bin/phpstan analyse --memory-limit=2G"
+                sh 'composer require --dev phpstan/phpstan'
+                sh 'vendor/bin/phpstan analyse --memory-limit=2G'
             }
         }
         stage("Static code analysis phpcs") {
