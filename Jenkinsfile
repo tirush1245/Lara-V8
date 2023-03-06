@@ -40,6 +40,7 @@ pipeline {
             steps {
                 sh 'composer require --dev phpstan/phpstan'
                 sh 'vendor/bin/phpstan analyse --memory-limit=2G'
+                sh 'export PATH=$PATH:./vendor/bin'
             }
         }
         stage("Static code analysis phpcs") {
