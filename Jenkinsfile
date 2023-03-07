@@ -22,6 +22,7 @@ pipeline {
                 sh 'echo DB_PASSWORD=${DB_PASSWORD} >> .env'
                 sh 'php artisan key:generate'
                 sh 'cp .env .env.testing'
+                sh 'composer require --dev nunomaduro/larastan'
             
             }
         }
@@ -34,6 +35,17 @@ pipeline {
 		stage("Code coverage") {
             steps {
                 sh "vendor/bin/phpunit --coverage-html 'reports/coverage'"
+            }
+        }
+        stage("Static code analysis larastan") {
+            steps {
+                
+                sh "vendor/bin/phpstan analyse --memory-limit=2G"
+            }
+        }
+        stage("Static code analysis phpcs") {
+            steps {
+                sh "vendor/bin/phpcs"
             }
         }
                 
