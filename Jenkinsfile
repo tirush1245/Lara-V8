@@ -23,7 +23,7 @@ pipeline {
                 sh 'php artisan key:generate'
                 sh 'cp .env .env.testing'
                 sh 'composer require --dev nunomaduro/larastan'
-                sh 'composer global require squizlabs/php_codesniffer'
+                sh 'cp phpcs.xml /var/jenkins_home/workspace/lara8/vendor/bin/'
             
             }
         }
