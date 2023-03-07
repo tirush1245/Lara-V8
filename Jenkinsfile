@@ -46,7 +46,7 @@ pipeline {
         stage("Static code analysis phpcs") {
             steps {
                 sh 'composer require --dev squizlabs/php_codesniffer'
-                sh "vendor/bin/phpcs"
+                sh "vendor/bin/phpcs --standard=PSR2 app"
             }
         }
                 
