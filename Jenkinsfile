@@ -43,12 +43,12 @@ pipeline {
                 sh "vendor/bin/phpstan analyse --memory-limit=2G"
             }
         }
-//         stage("Static code analysis phpcs") {
-//             steps {
-//                 sh 'composer require --dev squizlabs/php_codesniffer'
-//                 sh "vendor/bin/phpcs"
-//             }
-//         }
+        stage("Static code analysis phpcs") {
+            steps {
+                sh 'composer require --dev squizlabs/php_codesniffer'
+                sh "vendor/bin/phpcs"
+            }
+        }
                 
 // 		stage('Deploy') {
 //             steps { 
