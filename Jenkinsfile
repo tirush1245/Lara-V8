@@ -23,8 +23,7 @@ pipeline {
                 sh 'php artisan key:generate'
                 sh 'cp .env .env.testing'
                 sh 'composer require --dev nunomaduro/larastan'
-                sh 'composer require --dev squizlabs/php_codesniffer'
-            
+                            
             }
         }
 		
@@ -46,6 +45,7 @@ pipeline {
         }
         stage("Static code analysis phpcs") {
             steps {
+                sh 'composer require --dev squizlabs/php_codesniffer'
                 sh "vendor/bin/phpcs"
             }
         }
