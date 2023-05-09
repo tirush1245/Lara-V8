@@ -5,9 +5,9 @@ pipeline {
         stage('Build') {
             steps {
                 git 'https://github.com/tirusoma/lara8.git'
-                sh 'composer install'
+//                 sh 'composer install'
                 sh 'cp .env.example .env'
-                sh 'php artisan key:generate'                                 
+//                 sh 'php artisan key:generate'                                 
                 
             }
         }
